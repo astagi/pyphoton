@@ -24,7 +24,8 @@ class Photon:
         )
         response = requests.get("{0}/api/?{1}".format(self._host, parameters_query))
         if response.status_code != 200:
-            raise PhotonException(response.json())
+            json_response = response.json()
+            raise PhotonException(json_response.get('message', json_response).capitalize())
         return response.json()
 
     def _transform_location(self, location):
