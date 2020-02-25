@@ -1,3 +1,4 @@
+import json
 import requests
 
 from .errors import PhotonException
@@ -24,8 +25,11 @@ class Photon:
         )
         response = requests.get("{0}/api/?{1}".format(self._host, parameters_query))
         if response.status_code != 200:
-            json_response = response.json()
-            raise PhotonException(json_response.get('message', json_response).capitalize())
+            try:
+                json_response = response.json()
+            except json.decoder.JSONDecodeError:
+                json_response = {'message': 'Error ' + str(response.status_code)}
+            raise PhotonException(json_response['message'].capitalize())
         return response.json()
 
     def _transform_location(self, location):
