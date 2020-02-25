@@ -1,0 +1,2 @@
+class PhotonException(Exception):
+    pass
