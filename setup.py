@@ -2,9 +2,9 @@ from setuptools import setup, find_packages
 
 setup(
     name='pyphoton',
-    version='0.9.0',
+    version='0.9.1',
     url='',
-    install_requires=["requests==2.22.0"],
+    install_requires=["requests==2.23.0"],
     description="Photon Python client",
     long_description=open('README.rst', 'r').read(),
     license="MIT",
