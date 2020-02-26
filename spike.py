@@ -5,7 +5,6 @@ from pyphoton.errors import PhotonException
 client = Photon()
 
 print ("\n🔍 Looking for Berlin..\n")
-
 location = client.query('berlin', limit=1)
 print (location)
 
@@ -21,12 +20,15 @@ except PhotonException as ex:
 
 print ("\n🔍 Looking for locations around Berlin with location_bias_scale=2\n")
 locations = client.query('berlin', latitude=52, longitude=10, location_bias_scale=2)
+for location in locations:
+    print ('🌉 Location #{0}\n{1}\n'.format(location.osm_id, location))
 
+print ("\n🔍 Looking for locations around Berlin that are town and villages\n")
+locations = client.query('berlin', osm_tags=['place:town', 'place:village'])
 for location in locations:
     print ('🌉 Location #{0}\n{1}\n'.format(location.osm_id, location))
 
 print ("\n🔍 Looking for locations around (52, 10) using reverse \n")
 locations = client.reverse(latitude=52, longitude=10)
-
 for location in locations:
     print ('🌉 Location #{0}\n{1}\n'.format(location.osm_id, location))

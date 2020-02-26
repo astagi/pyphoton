@@ -23,14 +23,19 @@ class Photon:
                 lat=None,
                 lon=None,
                 lang=None,
-                location_bias_scale=None
+                location_bias_scale=None,
+                osm_tag=None
     ):
         params = locals().items()
-        parameters_query = '&'.join(
-            [
-                '{0}={1}'.format(k, v) for k, v in params if v and k not in ('self', 'endpoint')
-            ]
-        )
+        query_parameters = [
+            '{0}={1}'.format(k, v) for k, v in params if v and k not in ('self', 'endpoint', 'osm_tag')
+        ]
+        if osm_tag:
+            if not isinstance(osm_tag, (list, set)):
+                osm_tag = [osm_tag]
+            for osm_tag_el in osm_tag:
+                query_parameters.append('osm_tag={0}'.format(osm_tag_el))
+        parameters_query = '&'.join(query_parameters)
         response = requests.get("{0}/{1}/?{2}".format(
             self._host, endpoint, parameters_query
         ))
@@ -72,11 +77,12 @@ class Photon:
                 latitude=None,
                 longitude=None,
                 location_bias_scale=None,
+                osm_tags=None,
                 language=None,
     ):
         if not language:
             language = self._language
-        resp = self._execute_query('api', query, limit, latitude, longitude, language, location_bias_scale)
+        resp = self._execute_query('api', query, limit, latitude, longitude, language, location_bias_scale, osm_tags)
         return self._transform_locations_from_resp(resp, limit)
 
     def reverse(

@@ -160,6 +160,17 @@ def test_client_simple_request_with_no_limits(requests_mock):
     assert locations[1].latitude == 41.8902614
     assert locations[1].name == 'Berlin Colosseum'
 
+    requests_mock.get('https://photon.komoot.de/api/?q=berlin&lang=en&osm_tag=tourism:attraction&osm_tag=place:city', json=expected_json)
+    locations = client.query('berlin', osm_tags=['tourism:attraction', 'place:city'])
+    assert locations[0].longitude == 13.3888599
+    assert locations[0].latitude == 52.5170365
+    assert locations[0].name == "Berlin"
+
+    requests_mock.get('https://photon.komoot.de/api/?q=berlin&lang=en&osm_tag=!place:village', json=expected_json)
+    location = client.query('berlin', osm_tags='!place:village')
+    assert locations[0].longitude == 13.3888599
+    assert locations[0].latitude == 52.5170365
+    assert locations[0].name == "Berlin"
 
 
 def test_reverse(requests_mock):
