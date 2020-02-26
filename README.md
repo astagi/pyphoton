@@ -1,6 +1,6 @@
 # pyphoton
 
-🗺 Photon Python client
+🗺 Light Photon client written in Python
 
 [![Latest Version](https://img.shields.io/pypi/v/pyphoton.svg)](https://pypi.python.org/pypi/pyphoton/)
 [![codecov](https://codecov.io/gh/astagi/pyphoton/branch/master/graph/badge.svg)](https://codecov.io/gh/astagi/pyphoton)
@@ -56,6 +56,12 @@ try:
 except PhotonException as ex:
     print (ex)
 ```
+
+## WIP Features
+
+- Reverse search
+- BBox search
+- Method to fetch latest data
 
 ## Run tests
 

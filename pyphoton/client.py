@@ -35,19 +35,19 @@ class Photon:
     def _transform_location(self, location):
         new_location = Location()
         location_point = Point(
-            location['geometry']['coordinates'][0],
-            location['geometry']['coordinates'][1]
+            location['geometry']['coordinates'][1],
+            location['geometry']['coordinates'][0]
         )
         setattr(new_location, '_point', location_point)
         for property_name, property_value in location['properties'].items():
             if property_name == 'extent':
                 extent_from = Point(
-                    property_value[0],
-                    property_value[1]
+                    property_value[1],
+                    property_value[0]
                 )
                 extent_to = Point(
-                    property_value[2],
-                    property_value[3]
+                    property_value[3],
+                    property_value[2]
                 )
                 setattr(new_location, 'extent_from', extent_from)
                 setattr(new_location, 'extent_to', extent_to)
@@ -61,8 +61,8 @@ class Photon:
                 limit=None,
                 latitude=None,
                 longitude=None,
+                location_bias_scale=None,
                 language=None,
-                location_bias_scale=None
     ):
         if not language:
             language = self._language

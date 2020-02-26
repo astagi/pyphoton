@@ -13,3 +13,7 @@ try:
 except PhotonException as ex:
     print (ex)
 
+locations = client.query('berlin', latitude=52, longitude=10, location_bias_scale=2)
+
+for location in locations:
+    print ('🌉 Location #{0}\n{1}\n'.format(location.osm_id, location))
