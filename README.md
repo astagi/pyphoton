@@ -63,6 +63,7 @@ except PhotonException as ex:
 
 - Reverse search
 - BBox search
+- Query by osm tags
 - Method to fetch latest data
 
 ## Run tests
