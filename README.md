@@ -17,6 +17,8 @@ pip install pyphoton
 
 If you need some code ready to use, [spike.py](https://github.com/astagi/pyphoton/blob/master/spike.py) is a good starting point
 
+### Execute queries
+
 Python Photon client allows you to make queries to Photon service easily.
 
 ```py
@@ -44,6 +46,28 @@ You can pass to the `query` method the following parameters along the query stri
 - `location_bias_scale`: use to search with location bias
 
 `Location` object (or objects if you don't set limit=1) is generated from the json returned and contains all the information you need: name, state, street, city, osm attributes, extent_from.latitude, extent_from.longitude, extent_to.latitude, extent_to.longitude ...
+
+### Reverse search
+
+Python Photon client allows you to make reverse search.
+
+```py
+from pyphoton import Photon
+
+
+client = Photon()
+locations = client.reverse(latitude=52, longitude=10)
+
+for location in locations:
+    print ('🌉 Location #{0}\n{1}\n'.format(location.osm_id, location))
+```
+
+You can pass to the `reverse` method the following parameters:
+
+- `latitude` and `longitude`: use them to search using a geo position
+- `limit`: limit number of results
+
+### Deal with errors
 
 If there's an error in your query, a `PhotonException` will be raised
 
