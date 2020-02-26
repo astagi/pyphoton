@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='pyphoton',
-    version='0.0.0',
+    version='0.9.0',
     url='',
     install_requires=["requests==2.22.0"],
     description="Photon Python client",

@@ -31,3 +31,4 @@ error_logs.log
 #Build
 dist/
 *.egg-info/
+build/
