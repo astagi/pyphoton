@@ -15,14 +15,25 @@ class Photon:
         self._host = host.strip('/')
         self._language = language
 
-    def _execute_query(self, q, limit, lat, lon, lang, location_bias_scale):
+    def _execute_query(
+                self,
+                endpoint,
+                q=None,
+                limit=None,
+                lat=None,
+                lon=None,
+                lang=None,
+                location_bias_scale=None
+    ):
         params = locals().items()
         parameters_query = '&'.join(
             [
-                '{0}={1}'.format(k, v) for k, v in params if v and k != 'self'
+                '{0}={1}'.format(k, v) for k, v in params if v and k not in ('self', 'endpoint')
             ]
         )
-        response = requests.get("{0}/api/?{1}".format(self._host, parameters_query))
+        response = requests.get("{0}/{1}/?{2}".format(
+            self._host, endpoint, parameters_query
+        ))
         if response.status_code != 200:
             try:
                 json_response = response.json()
@@ -65,7 +76,22 @@ class Photon:
     ):
         if not language:
             language = self._language
-        resp = self._execute_query(query, limit, latitude, longitude, language, location_bias_scale)
+        resp = self._execute_query('api', query, limit, latitude, longitude, language, location_bias_scale)
+        return self._transform_locations_from_resp(resp, limit)
+
+    def reverse(
+                self,
+                latitude=None,
+                longitude=None,
+                limit=None,
+                language=None,
+    ):
+        if not language:
+            language = self._language
+        resp = self._execute_query('reverse', limit=limit, lat=latitude, lon=longitude, lang=language)
+        return self._transform_locations_from_resp(resp, limit)
+
+    def _transform_locations_from_resp(self, resp, limit):
         if limit == 1 and len(resp['features']):
             return self._transform_location(resp['features'][0])
         transformed_locations = []

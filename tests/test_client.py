@@ -161,6 +161,43 @@ def test_client_simple_request_with_no_limits(requests_mock):
     assert locations[1].name == 'Berlin Colosseum'
 
 
+
+def test_reverse(requests_mock):
+    expected_json = {
+        "features":[
+            {
+                "geometry":{
+                    "coordinates":[
+                        9.998645,
+                        51.9982968
+                    ],
+                    "type":"Point"
+                },
+                "type":"Feature",
+                "properties":{
+                    "osm_id": 693697564,
+                    "osm_type": "N",
+                    "country": "Germany",
+                    "osm_key": "tourism",
+                    "city": "Lamspringe",
+                    "street": "Evensener Dorfstraße",
+                    "osm_value": "information",
+                    "postcode": "31195",
+                    "name": "Geographischer Punkt",
+                    "state": "Lower Saxony"
+                }
+            }
+        ],
+        "type":"FeatureCollection"
+    }
+
+    client = Photon()
+    requests_mock.get('https://photon.komoot.de/reverse/?limit=1&lat=52&lon=10&lang=en', json=expected_json)
+    location = client.reverse(latitude=52, longitude=10, limit=1)
+    assert location.longitude == 9.998645
+    assert location.latitude == 51.9982968
+    assert location.osm_id == 693697564
+
 def test_errors(requests_mock):
 
     client = Photon()

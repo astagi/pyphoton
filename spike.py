@@ -25,3 +25,8 @@ locations = client.query('berlin', latitude=52, longitude=10, location_bias_scal
 for location in locations:
     print ('🌉 Location #{0}\n{1}\n'.format(location.osm_id, location))
 
+print ("\n🔍 Looking for locations around (52, 10) using reverse \n")
+locations = client.reverse(latitude=52, longitude=10)
+
+for location in locations:
+    print ('🌉 Location #{0}\n{1}\n'.format(location.osm_id, location))
