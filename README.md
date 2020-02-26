@@ -15,7 +15,9 @@ pip install pyphoton
 
 ## Usage
 
-Python Photon client allows you to make queries to Photon easily.
+If you need some code ready to use, [spike.py](https://github.com/astagi/pyphoton/blob/master/spike.py) is a good starting point
+
+Python Photon client allows you to make queries to Photon service easily.
 
 ```py
 from pyphoton import Photon
@@ -43,7 +45,7 @@ You can pass to the `query` method the following parameters along the query stri
 
 `Location` object (or objects if you don't set limit=1) is generated from the json returned and contains all the information you need: name, state, street, city, osm attributes, extent_from.latitude, extent_from.longitude, extent_to.latitude, extent_to.longitude ...
 
-If there's an with your query, a `PhotonException` will be raised
+If there's an error in your query, a `PhotonException` will be raised
 
 ```py
 from pyphoton import Photon
