@@ -38,13 +38,14 @@ print (location.longitude)
 - `host`: the url where Photon instance is running (default `https://photon.komoot.de`)
 - `language`: the preferred language (default is `en`)
 
-You can pass to the `query` method the following parameters along the query string:
+You can pass the `query` method the following parameters along the query string:
 
 - `limit`: limit number of results
 - `language`: force language in the query
 - `latitude` and `longitude`: use them to search with priority to a geo position
 - `location_bias_scale`: use to search with location bias
-- `osm_tags`: a string or list containing [osm tags filters](https://github.com/komoot/photon#filter-results-by-tags-and-values)
+- `osm_tags`: a `string` or `list` containing [osm tags filters](https://github.com/komoot/photon#filter-results-by-tags-and-values)
+- `bbox`: a `string` with comma-separated values or `list` containing [bounding box coordinates](https://github.com/komoot/photon#filter-results-by-bounding-box)
 
 `Location` object (or objects if you don't set limit=1) is generated from the json returned and contains all the information you need: name, state, street, city, osm attributes, extent_from.latitude, extent_from.longitude, extent_to.latitude, extent_to.longitude ...
 
@@ -84,14 +85,13 @@ except PhotonException as ex:
     print (ex)
 ```
 
-## WIP Features
-
-- BBox search
-- Method to fetch latest data
-
 ## Run tests
 
 ```sh
 pip install -r requirements-dev.txt
 make test
 ```
+
+## WIP Features
+
+- Method to fetch [latest data](http://download1.graphhopper.com/public/)

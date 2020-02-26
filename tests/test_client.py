@@ -43,6 +43,10 @@ def test_client_simple_request(requests_mock):
     assert str(location) == "Berlin\n(52.5170365, 13.3888599)\ncity: Berlin\npostcode: 10117\nstate: Berlin\nosm_id: 240109189\nosm_type: N\nosm_key: place\nosm_value: city"
 
 
+    requests_mock.get('https://photon.komoot.de/api/?q=berlin&limit=1&lang=en', json=expected_json)
+    location = client.query('berlin', limit=1, bbox=(9.5,51.5,11.5,53.5))
+    location = client.query('berlin', limit=1, bbox="9.5,51.5,11.5,53.5")
+
 def test_client_simple_request_with_extent(requests_mock):
 
     client = Photon()

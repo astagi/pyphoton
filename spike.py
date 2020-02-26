@@ -28,6 +28,11 @@ locations = client.query('berlin', osm_tags=['place:town', 'place:village'])
 for location in locations:
     print ('🌉 Location #{0}\n{1}\n'.format(location.osm_id, location))
 
+print ("\n🔍 Looking for locations inside a bounding box\n")
+locations = client.query('berlin', bbox=(9.5,51.5,11.5,53.5))
+for location in locations:
+    print ('🌉 Location #{0}\n{1}\n'.format(location.osm_id, location))
+
 print ("\n🔍 Looking for locations around (52, 10) using reverse \n")
 locations = client.reverse(latitude=52, longitude=10)
 for location in locations:
