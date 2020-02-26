@@ -43,7 +43,7 @@ easily.
    ``https://photon.komoot.de``)
 -  ``language``: the preferred language (default is ``en``)
 
-You can pass to the ``query`` method the following parameters along the
+You can pass the ``query`` method the following parameters along the
 query string:
 
 -  ``limit``: limit number of results
@@ -51,8 +51,11 @@ query string:
 -  ``latitude`` and ``longitude``: use them to search with priority to a
    geo position
 -  ``location_bias_scale``: use to search with location bias
--  ``osm_tags``: a string or list containing `osm tags
+-  ``osm_tags``: a ``string`` or ``list`` containing `osm tags
    filters <https://github.com/komoot/photon#filter-results-by-tags-and-values>`__
+-  ``bbox``: a ``string`` with comma-separated values or ``list``
+   containing `bounding box
+   coordinates <https://github.com/komoot/photon#filter-results-by-bounding-box>`__
 
 ``Location`` object (or objects if you don't set limit=1) is generated
 from the json returned and contains all the information you need: name,
@@ -98,12 +101,6 @@ If there's an error in your query, a ``PhotonException`` will be raised
     except PhotonException as ex:
         print (ex)
 
-WIP Features
-------------
-
--  BBox search
--  Method to fetch latest data
-
 Run tests
 ---------
 
@@ -111,6 +108,12 @@ Run tests
 
     pip install -r requirements-dev.txt
     make test
+
+WIP Features
+------------
+
+-  Method to fetch `latest
+   data <http://download1.graphhopper.com/public/>`__
 
 .. |Latest Version| image:: https://img.shields.io/pypi/v/pyphoton.svg
    :target: https://pypi.python.org/pypi/pyphoton/
