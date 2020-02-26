@@ -10,7 +10,7 @@ setup(
     license="MIT",
     author="Andrea Stagi",
     author_email="stagi.andrea@gmail.com",
-    packages=find_packages(),
+    packages=find_packages(exclude=("tests",)),
     include_package_data=True,
     classifiers=[
         'Environment :: Web Environment',

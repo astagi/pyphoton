@@ -2,8 +2,7 @@ import json
 import requests
 
 from .errors import PhotonException
-from .location import Location
-from .point import Point
+from .models import Location, Point
 
 
 class Photon:
