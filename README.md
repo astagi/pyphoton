@@ -32,12 +32,12 @@ print (location.longitude)
 `Photon` object accepts two parameters:
 
 - `host`: the url where Photon instance is running (default `https://photon.komoot.de`)
-- `language`: the response language (default is `en`)
+- `language`: the preferred language (default is `en`)
 
 You can pass to the `query` method the following parameters along the query string:
 
 - `limit`: limit number of results
-- `language`: language to use in the query
+- `language`: force language in the query
 - `latitude` and `longitude`: use them to search with priority to a geo position
 
 `Location` object (or objects if you don't set limit=1) is generated from the json returned and contains all the information you need: name, state, street, city, osm attributes, extent_from.latitude, extent_from.longitude, extent_to.latitude, extent_to.longitude ...

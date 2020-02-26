@@ -16,7 +16,7 @@ class Photon:
         self._host = host.strip('/')
         self._language = language
 
-    def _execute_query(self, q, limit, lat, lon, lang):
+    def _execute_query(self, q, limit, lat, lon, lang, location_bias_scale):
         params = locals().items()
         parameters_query = '&'.join(
             [
@@ -55,10 +55,18 @@ class Photon:
                 setattr(new_location, property_name, property_value)
         return new_location
 
-    def query(self, query, limit=None, latitude=None, longitude=None, language=None):
+    def query(
+                self,
+                query,
+                limit=None,
+                latitude=None,
+                longitude=None,
+                language=None,
+                location_bias_scale=None
+    ):
         if not language:
             language = self._language
-        resp = self._execute_query(query, limit, latitude, longitude, language)
+        resp = self._execute_query(query, limit, latitude, longitude, language, location_bias_scale)
         if limit == 1 and len(resp['features']):
             return self._transform_location(resp['features'][0])
         transformed_locations = []
