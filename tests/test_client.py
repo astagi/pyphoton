@@ -33,7 +33,7 @@ def test_client_simple_request(requests_mock):
         ],
         "type": "FeatureCollection"
     }
-    requests_mock.get('https://photon.komoot.de/api/?q=berlin&limit=1&lang=en', json=expected_json)
+    requests_mock.get('https://photon.komoot.io/api/?q=berlin&limit=1&lang=en', json=expected_json)
     location = client.query('berlin', limit=1)
 
     assert location.longitude == 13.3888599
@@ -43,7 +43,7 @@ def test_client_simple_request(requests_mock):
     assert str(location) == "Berlin\n(52.5170365, 13.3888599)\ncity: Berlin\npostcode: 10117\nstate: Berlin\nosm_id: 240109189\nosm_type: N\nosm_key: place\nosm_value: city"
 
 
-    requests_mock.get('https://photon.komoot.de/api/?q=berlin&limit=1&lang=en', json=expected_json)
+    requests_mock.get('https://photon.komoot.io/api/?q=berlin&limit=1&lang=en', json=expected_json)
     location = client.query('berlin', limit=1, bbox=(9.5,51.5,11.5,53.5))
     location = client.query('berlin', limit=1, bbox="9.5,51.5,11.5,53.5")
 
@@ -83,7 +83,7 @@ def test_client_simple_request_with_extent(requests_mock):
         ],
         "type": "FeatureCollection"
     }
-    requests_mock.get('https://photon.komoot.de/api/?q=Colosseum&limit=1&lang=en', json=expected_json)
+    requests_mock.get('https://photon.komoot.io/api/?q=Colosseum&limit=1&lang=en', json=expected_json)
     location = client.query('Colosseum', limit=1)
 
     assert location.longitude == 12.493087103595503
@@ -152,7 +152,7 @@ def test_client_simple_request_with_no_limits(requests_mock):
         ],
         "type": "FeatureCollection"
     }
-    requests_mock.get('https://photon.komoot.de/api/?q=berlin&lang=en', json=expected_json)
+    requests_mock.get('https://photon.komoot.io/api/?q=berlin&lang=en', json=expected_json)
     locations = client.query('berlin')
 
     assert locations[0].longitude == 13.3888599
@@ -164,13 +164,13 @@ def test_client_simple_request_with_no_limits(requests_mock):
     assert locations[1].latitude == 41.8902614
     assert locations[1].name == 'Berlin Colosseum'
 
-    requests_mock.get('https://photon.komoot.de/api/?q=berlin&lang=en&osm_tag=tourism:attraction&osm_tag=place:city', json=expected_json)
+    requests_mock.get('https://photon.komoot.io/api/?q=berlin&lang=en&osm_tag=tourism:attraction&osm_tag=place:city', json=expected_json)
     locations = client.query('berlin', osm_tags=['tourism:attraction', 'place:city'])
     assert locations[0].longitude == 13.3888599
     assert locations[0].latitude == 52.5170365
     assert locations[0].name == "Berlin"
 
-    requests_mock.get('https://photon.komoot.de/api/?q=berlin&lang=en&osm_tag=!place:village', json=expected_json)
+    requests_mock.get('https://photon.komoot.io/api/?q=berlin&lang=en&osm_tag=!place:village', json=expected_json)
     location = client.query('berlin', osm_tags='!place:village')
     assert locations[0].longitude == 13.3888599
     assert locations[0].latitude == 52.5170365
@@ -207,7 +207,7 @@ def test_reverse(requests_mock):
     }
 
     client = Photon()
-    requests_mock.get('https://photon.komoot.de/reverse/?limit=1&lat=52&lon=10&lang=en', json=expected_json)
+    requests_mock.get('https://photon.komoot.io/reverse/?limit=1&lat=52&lon=10&lang=en', json=expected_json)
     location = client.reverse(latitude=52, longitude=10, limit=1)
     assert location.longitude == 9.998645
     assert location.latitude == 51.9982968
@@ -217,7 +217,7 @@ def test_errors(requests_mock):
 
     client = Photon()
     requests_mock.get(
-        'https://photon.komoot.de/api/?q=berlin&limit=1&lang=en',
+        'https://photon.komoot.io/api/?q=berlin&limit=1&lang=en',
         json={'message' : "missing search term 'q': /?q=berlin"},
         status_code=400
     )
@@ -226,7 +226,7 @@ def test_errors(requests_mock):
 
 
     requests_mock.get(
-        'https://photon.komoot.de/api/?q=berlin&limit=1&lang=en',
+        'https://photon.komoot.io/api/?q=berlin&limit=1&lang=en',
         status_code=500
     )
     with pytest.raises(PhotonException):
