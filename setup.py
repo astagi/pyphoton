@@ -2,8 +2,8 @@ from setuptools import setup, find_packages
 
 setup(
     name='pyphoton',
-    version='0.9.3',
-    url='',
+    version='1.0.0',
+    url='https://github.com/astagi/pyphoton',
     install_requires=["requests==2.26.0"],
     description="Photon Python client",
     long_description=open('README.rst', 'r').read(),
