@@ -1,3 +1,4 @@
+-r requirements.txt
 
 codecov==2.0.9
 coverage==4.5.2
