@@ -9,7 +9,7 @@ class Photon:
 
     def __init__(
             self,
-            host='https://photon.komoot.de',
+            host='https://photon.komoot.io',
             language='en'
     ):
         self._host = host.strip('/')
