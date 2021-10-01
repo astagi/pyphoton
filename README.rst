@@ -119,7 +119,7 @@ WIP Features
    :target: https://pypi.python.org/pypi/pyphoton/
 .. |codecov| image:: https://codecov.io/gh/astagi/pyphoton/branch/master/graph/badge.svg
    :target: https://codecov.io/gh/astagi/pyphoton
-.. |Build Status| image:: https://travis-ci.org/astagi/pyphoton.svg?branch=master
-   :target: https://travis-ci.org/astagi/pyphoton
+.. |Build Status| image:: https://github.com/astagi/pyphoton/actions/workflows/ci.yml/badge.svg
+   :target: https://github.com/astagi/pyphoton/actions/workflows/ci.yml
 .. |License: MIT| image:: https://img.shields.io/badge/License-MIT-blue.svg
    :target: https://github.com/astagi/pyphoton/blob/master/LICENSE
