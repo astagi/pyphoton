@@ -35,7 +35,7 @@ print (location.longitude)
 
 `Photon` object accepts two parameters:
 
-- `host`: the url where Photon instance is running (default `https://photon.komoot.de`)
+- `host`: the url where Photon instance is running (default `https://photon.komoot.io`)
 - `language`: the preferred language (default is `en`)
 
 You can pass the `query` method the following parameters along the query string:
