@@ -4,7 +4,7 @@ setup(
     name='pyphoton',
     version='1.0.0',
     url='https://github.com/astagi/pyphoton',
-    install_requires=["requests==2.26.0"],
+    install_requires=["requests==2.31.0"],
     description="Photon Python client",
     long_description=open('README.rst', 'r').read(),
     license="MIT",
